@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>SecureVote Pro - Voter Portal</title>
+    
+    <!-- External CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css?v=3">
+</head>
+<body>
+    <div id="particles"></div>
+    
+    <!-- Header -->
+    <header class="glass-card mx-4 mt-4 rounded-2xl p-4">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
+                    <i class="fas fa-vote-yea text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-white">SecureVote Pro</h1>
+                    <p class="text-blue-200 text-sm">Voter Portal</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <div class="text-white font-medium" id="user-name">Voter</div>
+                    <div class="text-blue-200 text-sm">Voter Access</div>
+                </div>
+                <button onclick="logout()" class="bg-red-500/20 hover:bg-red-500/30 text-red-300 px-4 py-2 rounded-lg border border-red-400/30 transition-colors">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="mx-4 mt-6 mb-8">
+        <!-- Voting Section -->
+        <div class="max-w-2xl mx-auto">
+            <div class="glass-card rounded-3xl p-8">
+                <div class="text-center mb-8">
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-vote-yea text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-white mb-2">Cast Your Vote</h2>
+                    <p class="text-blue-200">Use your One-Time Access Code to vote securely</p>
+                </div>
+
+                <form id="vote-form" class="space-y-6">
+                    <div>
+                        <label for="otac" class="block text-white font-medium mb-3">
+                            <i class="fas fa-key mr-2"></i>One-Time Access Code (OTAC)
+                        </label>
+                        <input type="text" id="otac" required
+                               class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent font-mono"
+                               placeholder="Enter your OTAC here">
+                        <p class="text-blue-200 text-sm mt-2">Enter the access code provided by the election administrator</p>
+                    </div>
+
+                    <div>
+                        <label for="candidate" class="block text-white font-medium mb-3">
+                            <i class="fas fa-user-check mr-2"></i>Select Candidate
+                        </label>
+                        <select id="candidate" required
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent">
+                            <option value="" class="bg-gray-800">Choose a candidate...</option>
+                            <option value="candidate_a" class="bg-gray-800">Candidate A</option>
+                            <option value="candidate_b" class="bg-gray-800">Candidate B</option>
+                            <option value="candidate_c" class="bg-gray-800">Candidate C</option>
+                        </select>
+                    </div>
+
+                    <div class="bg-yellow-900/20 border border-yellow-400/30 rounded-lg p-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 text-lg mt-1"></i>
+                            <div>
+                                <h4 class="text-yellow-300 font-semibold mb-1">Important Notice</h4>
+                                <p class="text-yellow-200 text-sm">
+                                    Your vote is anonymous and cannot be changed once submitted. 
+                                    Please verify your selection before clicking "Cast Vote".
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full gradient-btn py-4 px-6 rounded-xl text-white font-bold text-lg flex items-center justify-center space-x-3 transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-vote-yea text-xl"></i>
+                        <span>Cast Vote</span>
+                    </button>
+                </form>
+
+                <div id="vote-result" class="mt-6"></div>
+            </div>
+
+            <!-- Voting Information -->
+            <div class="mt-8 glass-card rounded-2xl p-6">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-info-circle text-blue-400 mr-3"></i>
+                    Voting Information
+                </h3>
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-shield-check text-green-400 mt-1"></i>
+                        <div>
+                            <div class="text-white font-medium">Secure & Anonymous</div>
+                            <div class="text-blue-200">Your vote is cryptographically secured and completely anonymous</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-lock text-blue-400 mt-1"></i>
+                        <div>
+                            <div class="text-white font-medium">One-Time Access</div>
+                            <div class="text-blue-200">Each OTAC can only be used once to prevent duplicate voting</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-certificate text-purple-400 mt-1"></i>
+                        <div>
+                            <div class="text-white font-medium">Verifiable</div>
+                            <div class="text-blue-200">All votes are recorded in a tamper-evident Merkle tree</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/scripts.js?v=3"></script>
+    <script src="/static/voter.js?v=3"></script>
+</body>
+</html>
