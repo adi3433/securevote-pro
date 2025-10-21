@@ -4,7 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    /* Use Noto Sans as the primary UI font (legacy stylesheet updated) */
+    font-family: 'Noto Sans', 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
 html, body {
@@ -244,7 +245,8 @@ body::before {
 .merkle-root {
     background: linear-gradient(135deg, #1f2937, #374151);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    font-family: 'Courier New', monospace;
+    /* Use Roboto Mono for cryptographic hashes/monospaced content */
+    font-family: 'Roboto Mono', 'Courier New', monospace;
     word-break: break-all;
     position: relative;
     overflow: hidden;
