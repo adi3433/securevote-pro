@@ -1,5 +1,7 @@
 # Environment variables (contains sensitive data)
 .env
+venv
+securevotevenv
 
 # Python
 __pycache__/
